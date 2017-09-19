@@ -25,10 +25,22 @@ class InventoryTest < Minitest::Test
   def test_it_can_record_items
     @inventory.record_item({"shirt" => {"quantity" => 50, "cost" => 15}})
     @inventory.items
-    
+
+
     assert_includes ["quantity" => 50, "cost" => 15], @inventory.items['shirt']
     assert_equal "shirt", @inventory.items.keys.first
     assert_equal 50, @inventory.items['shirt']['quantity']
+    assert_equal 15, @inventory.items['shirt']['cost']
+  end
+
+  def test_it_can_record_different_item
+    @inventory.record_item({"shirt" => {"quantity" => 50, "cost" => 15}})
+    @inventory.record_item({"shirt" => {"quantity" => 10, "cost" => 15}})
+    @inventory.items
+
+    assert_includes ["quantity" => 60, "cost" => 15], @inventory.items['shirt']
+    assert_equal "shirt", @inventory.items.keys.first
+    assert_equal 60, @inventory.items['shirt']['quantity']
     assert_equal 15, @inventory.items['shirt']['cost']
   end
 end

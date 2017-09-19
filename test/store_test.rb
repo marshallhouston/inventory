@@ -31,7 +31,7 @@ class StoreTest < Minitest::Test
 
   def test_store_can_add_inventories
     store = Store.new("Ace", "834 2nd St", "Hardware")
-    inventory = Inventory.new
+    inventory = Inventory.new("Ace", "834 2nd St", "Hardware")
 
     assert store.inventory_record.empty?
 
